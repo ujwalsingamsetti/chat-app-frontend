@@ -1,38 +1,115 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app-container {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 25px;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  transition: all 0.4s ease;
 }
 
-.App-link {
-  color: #61dafb;
+/* Light Mode */
+body.light-mode {
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  color: #1f2937;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Dark Mode */
+body.dark-mode {
+  background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+  color: #f3f4f6;
+}
+
+/* Bootstrap Card Overrides */
+body.dark-mode .card {
+  background: #374151;
+  border: 1px solid #4b5563;
+  color: #f3f4f6;
+}
+
+body.dark-mode .card-header {
+  background: #1f2937;
+  border-bottom: 1px solid #4b5563;
+}
+
+body.dark-mode .btn-primary {
+  background: #5b21b6;
+  border: none;
+}
+
+body.dark-mode .form-control {
+  background: #4b5563;
+  color: #f3f4f6;
+  border: 1px solid #6b7280;
+}
+
+body.dark-mode .form-control:focus {
+  border-color: #5b21b6;
+  box-shadow: 0 0 8px rgba(91, 33, 182, 0.5);
+}
+
+/* Custom Button Styles */
+.custom-btn {
+  background: linear-gradient(90deg, #ec4899 0%, #8b5cf6 100%);
+  border: none;
+  border-radius: 12px;
+  padding: 12px 25px;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.custom-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
+  background: linear-gradient(90deg, #8b5cf6 0%, #ec4899 100%);
+}
+
+.custom-btn-success {
+  background: linear-gradient(90deg, #10b981 0%, #047857 100%);
+}
+
+.custom-btn-success:hover {
+  background: linear-gradient(90deg, #047857 0%, #10b981 100%);
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.custom-btn-dark-toggle {
+  background: linear-gradient(90deg, #9ca3af 0%, #6b7280 100%);
+  border-radius: 25px;
+  padding: 8px 20px;
+  color: #111827;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.custom-btn-dark-toggle:hover {
+  background: linear-gradient(90deg, #6b7280 0%, #9ca3af 100%);
+  transform: scale(1.1);
+}
+
+.custom-input {
+  border-radius: 12px;
+  padding: 14px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.custom-input:focus {
+  border-color: #ec4899;
+  box-shadow: 0 0 10px rgba(236, 72, 153, 0.3);
+  outline: none;
+}
+
+body.dark-mode .custom-input {
+  background: #4b5563;
+  border-color: #6b7280;
+}
+
+body.dark-mode .custom-input:focus {
+  border-color: #5b21b6;
+  box-shadow: 0 0 10px rgba(91, 33, 182, 0.5);
 }
