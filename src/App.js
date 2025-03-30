@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Chat from './components/Chat';
 import Login from './components/Login';
-import Register from './components/Register'; // Import the Register component
+import Register from './components/Register';
 
 function App() {
   const token = localStorage.getItem('token');
