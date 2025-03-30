@@ -16,9 +16,10 @@ function Chat() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      const newSocket = io(process.env.REACT_APP_API_URL || 'http://localhost:5500', {
+      const newSocket = io('https://chat-app-backend-mgik.onrender.com', {
+        transports: ['websocket', 'polling'], // Ensure compatibility
         auth: { token }
-      });
+      });      
       setSocket(newSocket);
 
       newSocket.on('connect', () => console.log('Socket connected'));
