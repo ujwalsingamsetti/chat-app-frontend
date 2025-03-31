@@ -10,23 +10,36 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    console.log('Form submitted, starting login process'); // Debug form submission
     try {
       const apiUrl = `${process.env.REACT_APP_API_URL || 'https://chat-app-backend-mgik.onrender.com'}/login`;
       console.log('Login request URL:', apiUrl);
-      console.log('Login attempt with credentials:', { username, password }); // Debug credentials
+      console.log('Login attempt with credentials:', { username, password });
+
       const response = await axios.post(apiUrl, {
         username,
         password,
       });
       console.log('Login response:', response); // Log the full response object
       const { token } = response.data;
-      console.log('Extracted token:', token); // Log the extracted token
+      console.log('Extracted token:', token);
+
+      // Store the token in localStorage
       localStorage.setItem('token', token);
-      console.log('Token stored in localStorage:', localStorage.getItem('token')); // Confirm storage
-      navigate('/chat');
-      console.log('Navigated to /chat'); // Confirm navigation
+      console.log('Token stored in localStorage:', localStorage.getItem('token'));
+
+      // Try navigating to /chat
+      try {
+        navigate('/chat');
+        console.log('Navigated to /chat using navigate');
+      } catch (navError) {
+        console.error('Navigation error:', navError);
+        // Fallback to direct redirect if navigate fails
+        window.location.href = '/chat';
+        console.log('Navigated to /chat using window.location.href');
+      }
     } catch (err) {
-      console.error('Login error:', err.response ? err.response.data : err.message); // Debug the error
+      console.error('Login error:', err.response ? err.response.data : err.message);
       setError('Invalid username or password');
     }
   };

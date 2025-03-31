@@ -63,12 +63,20 @@ function Chat() {
         setTypingUser(null);
       });
 
+      // Listen for a clear public chat event from the server
+      newSocket.on('publicChatCleared', () => {
+        if (!selectedUser) { // Only clear messages if in Public Chat
+          setMessages([]);
+        }
+      });
+
       return () => {
         newSocket.off('newMessage');
         newSocket.off('newReaction');
         newSocket.off('onlineUsers');
         newSocket.off('typing');
         newSocket.off('stopTyping');
+        newSocket.off('publicChatCleared');
         newSocket.off('connect');
         newSocket.off('connect_error');
         newSocket.disconnect();
@@ -143,6 +151,19 @@ function Chat() {
     setMessage((prev) => prev + emojiObject.emoji);
   };
 
+  const clearPublicChat = async () => {
+    try {
+      await axios.delete(`${process.env.REACT_APP_API_URL || 'https://chat-app-backend-mgik.onrender.com'}/clear-public-chat`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      });
+      // Clear messages locally (will also be cleared via Socket.IO event)
+      setMessages([]);
+    } catch (err) {
+      console.error('Error clearing public chat:', err.response ? err.response.data : err.message);
+      alert('Failed to clear public chat');
+    }
+  };
+
   return (
     <div className={`flex h-screen ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-900'}`}>
       {/* Sidebar */}
@@ -179,6 +200,14 @@ function Chat() {
             {selectedUser ? `Chat with ${selectedUser.username}` : 'Public Chat Room'}
           </h2>
           <div className="space-x-2">
+            {!selectedUser && ( // Show Clear Chat button only in Public Chat
+              <button
+                onClick={clearPublicChat}
+                className="px-3 py-1 bg-red-500 text-white rounded-lg text-sm font-medium hover:bg-red-600"
+              >
+                Clear Chat
+              </button>
+            )}
             <button
               onClick={toggleDarkMode}
               className={`px-3 py-1 rounded-lg text-sm font-medium ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-900'}`}
