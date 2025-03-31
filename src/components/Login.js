@@ -1,32 +1,35 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError(""); // Clear any previous errors
-  
+
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL || 'https://chat-app-backend-mgik.onrender.com'}/login`, {
-        username,
-        password,
-      });
-  
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL || "https://chat-app-backend-mgik.onrender.com"}/login`,
+        {
+          username,
+          password,
+        }
+      );
+
       console.log("Login response:", response.data);
-  
+
       if (response.data.token) {
-        localStorage.setItem("authToken", response.data.token); // Save token
-  
-        // Ensure state updates and navigation happen properly
+        localStorage.setItem("token", response.data.token); // Ensure correct key
+
         setTimeout(() => {
-          navigate('/chat'); // Redirect after ensuring storage update
-        }, 500); // Small delay to allow storage to complete
+          console.log("Redirecting to /chat...");
+          navigate("/chat"); // Redirect after a small delay
+        }, 500);
       } else {
         setError("Invalid response from server. Please try again.");
       }
@@ -35,7 +38,6 @@ function Login() {
       setError("Invalid username or password");
     }
   };
-  
 
   return (
     <div className="flex h-screen items-center justify-center bg-gray-100">
@@ -44,7 +46,9 @@ function Login() {
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleLogin}>
           <div className="mb-4">
-            <label htmlFor="username" className="block text-gray-700 mb-2">Username</label>
+            <label htmlFor="username" className="block text-gray-700 mb-2">
+              Username
+            </label>
             <input
               type="text"
               id="username"
@@ -58,7 +62,9 @@ function Login() {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="password" className="block text-gray-700 mb-2">Password</label>
+            <label htmlFor="password" className="block text-gray-700 mb-2">
+              Password
+            </label>
             <input
               type="password"
               id="password"
@@ -78,12 +84,6 @@ function Login() {
             Login
           </button>
         </form>
-        <p className="mt-4 text-center">
-          Don't have an account?{' '}
-          <a href="/register" className="text-indigo-500 hover:underline">
-            Register
-          </a>
-        </p>
       </div>
     </div>
   );
