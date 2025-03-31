@@ -22,7 +22,7 @@ function Login() {
   
       if (response.data.token) {
         localStorage.setItem("authToken", response.data.token); // Save token
-        navigate('/dashboard'); // Redirect to dashboard or home
+        navigate('/chat'); // Redirect to dashboard or home
       } else {
         setError("Invalid response from server. Please try again.");
       }
