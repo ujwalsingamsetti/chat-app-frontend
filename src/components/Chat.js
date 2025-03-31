@@ -16,10 +16,9 @@ function Chat() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      const newSocket = io('https://chat-app-backend-mgik.onrender.com', {
-        transports: ['websocket', 'polling'], // Ensure compatibility
+      const newSocket = io(process.env.REACT_APP_API_URL || 'https://chat-app-backend-mgik.onrender.com', {
         auth: { token }
-      });      
+      });
       setSocket(newSocket);
 
       newSocket.on('connect', () => console.log('Socket connected'));
@@ -84,8 +83,8 @@ function Chat() {
     const fetchMessages = async () => {
       try {
         const url = selectedUser
-          ? `${process.env.REACT_APP_API_URL || 'http://localhost:5500'}/messages?recipientId=${selectedUser.id}`
-          : `${process.env.REACT_APP_API_URL || 'http://localhost:5500'}/messages`;
+          ? `${process.env.REACT_APP_API_URL || 'https://chat-app-backend-mgik.onrender.com'}/messages?recipientId=${selectedUser.id}`
+          : `${process.env.REACT_APP_API_URL || 'https://chat-app-backend-mgik.onrender.com'}/messages`;
         const response = await axios.get(url, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });

@@ -11,7 +11,7 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL || 'http://localhost:5500'}/register`, {
+      await axios.post(`${process.env.REACT_APP_API_URL || 'https://chat-app-backend-mgik.onrender.com'}/register`, {
         username,
         password,
       });
@@ -28,9 +28,11 @@ function Register() {
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleRegister}>
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Username</label>
+            <label htmlFor="username" className="block text-gray-700 mb-2">Username</label>
             <input
               type="text"
+              id="username"
+              name="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -39,9 +41,11 @@ function Register() {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Password</label>
+            <label htmlFor="password" className="block text-gray-700 mb-2">Password</label>
             <input
               type="password"
+              id="password"
+              name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
