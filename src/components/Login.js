@@ -49,7 +49,7 @@ function Login() {
               onChange={(e) => setUsername(e.target.value)}
               className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Enter your username"
-              autocomplete="username"
+              autoComplete="username"
               required
             />
           </div>
@@ -63,7 +63,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Enter your password"
-              autocomplete="password"
+              autoComplete="password"
               required
             />
           </div>
