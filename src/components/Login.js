@@ -10,7 +10,7 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(""); // Clear previous errors
+    setError(""); // Clear any previous errors
   
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL || 'https://chat-app-backend-mgik.onrender.com'}/login`, {
@@ -22,7 +22,11 @@ function Login() {
   
       if (response.data.token) {
         localStorage.setItem("authToken", response.data.token); // Save token
-        navigate('/chat'); // Redirect to dashboard or home
+  
+        // Ensure state updates and navigation happen properly
+        setTimeout(() => {
+          navigate('/chat'); // Redirect after ensuring storage update
+        }, 500); // Small delay to allow storage to complete
       } else {
         setError("Invalid response from server. Please try again.");
       }
