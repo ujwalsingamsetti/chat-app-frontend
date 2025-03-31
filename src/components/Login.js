@@ -10,20 +10,28 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError(""); // Clear previous errors
+  
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL || 'https://chat-app-backend-mgik.onrender.com'}/login`, {
         username,
         password,
       });
-      console.log('Login response:', response.data); // Debug the response
-      const { token } = response.data;
-      localStorage.setItem('token', token);
-      navigate('/chat');
+  
+      console.log("Login response:", response.data);
+  
+      if (response.data.token) {
+        localStorage.setItem("authToken", response.data.token); // Save token
+        navigate('/dashboard'); // Redirect to dashboard or home
+      } else {
+        setError("Invalid response from server. Please try again.");
+      }
     } catch (err) {
-      console.error('Login error:', err.response ? err.response.data : err.message); // Debug the error
-      setError('Invalid username or password');
+      console.error("Login error:", err);
+      setError("Invalid username or password");
     }
   };
+  
 
   return (
     <div className="flex h-screen items-center justify-center bg-gray-100">
