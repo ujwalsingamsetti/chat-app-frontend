@@ -10,28 +10,26 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(""); // Clear previous errors
-  
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL || 'https://chat-app-backend-mgik.onrender.com'}/login`, {
+      const apiUrl = `${process.env.REACT_APP_API_URL || 'https://chat-app-backend-mgik.onrender.com'}/login`;
+      console.log('Login request URL:', apiUrl);
+      console.log('Login attempt with credentials:', { username, password }); // Debug credentials
+      const response = await axios.post(apiUrl, {
         username,
         password,
       });
-  
-      console.log("Login response:", response.data);
-  
-      if (response.data.token) {
-        localStorage.setItem("token", response.data.token); // Save token
-        navigate('/chat'); // Redirect to dashboard or home
-      } else {
-        setError("Invalid response from server. Please try again.");
-      }
+      console.log('Login response:', response); // Log the full response object
+      const { token } = response.data;
+      console.log('Extracted token:', token); // Log the extracted token
+      localStorage.setItem('token', token);
+      console.log('Token stored in localStorage:', localStorage.getItem('token')); // Confirm storage
+      navigate('/chat');
+      console.log('Navigated to /chat'); // Confirm navigation
     } catch (err) {
-      console.error("Login error:", err);
-      setError("Invalid username or password");
+      console.error('Login error:', err.response ? err.response.data : err.message); // Debug the error
+      setError('Invalid username or password');
     }
   };
-  
 
   return (
     <div className="flex h-screen items-center justify-center bg-gray-100">
@@ -49,7 +47,6 @@ function Login() {
               onChange={(e) => setUsername(e.target.value)}
               className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Enter your username"
-              autoComplete="username"
               required
             />
           </div>
@@ -63,7 +60,6 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Enter your password"
-              autoComplete="password"
               required
             />
           </div>
