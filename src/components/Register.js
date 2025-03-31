@@ -11,15 +11,20 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL || 'https://chat-app-backend-mgik.onrender.com'}/register`, {
-        username,
-        password,
-      });
+      await axios.post(
+        `${process.env.REACT_APP_API_URL || 'https://chat-app-backend-mgik.onrender.com'}/register`,
+        { username, password }
+      );
       navigate('/');
     } catch (err) {
-      setError('Username already exists or registration failed');
+      if (err.response && err.response.data && err.response.data.message) {
+        setError(err.response.data.message); // Show the actual error from backend
+      } else {
+        setError('An unexpected error occurred. Please try again.');
+      }
     }
   };
+  
 
   return (
     <div className="flex h-screen items-center justify-center bg-gray-100">
