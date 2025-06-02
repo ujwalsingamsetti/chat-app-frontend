@@ -1,0 +1,313 @@
+
+/* Chat Component Styles */
+
+/* Base Chat Container */
+.chat-container {
+  @apply min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-4;
+}
+
+.chat-wrapper {
+  @apply max-w-7xl mx-auto h-[calc(100vh-2rem)] flex gap-6;
+}
+
+/* Login Prompt Styles */
+.login-prompt {
+  @apply min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center;
+}
+
+.login-card {
+  @apply bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 shadow-2xl;
+}
+
+.login-icon {
+  @apply w-16 h-16 text-purple-400 mx-auto mb-4;
+}
+
+.login-title {
+  @apply text-white text-xl font-semibold text-center;
+}
+
+.login-subtitle {
+  @apply text-purple-200 text-center mt-2;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  @apply w-80 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 shadow-2xl;
+}
+
+.sidebar-header {
+  @apply flex items-center gap-3 mb-6;
+}
+
+.sidebar-icon-container {
+  @apply p-2 bg-emerald-500/20 rounded-lg;
+}
+
+.sidebar-icon {
+  @apply w-6 h-6 text-emerald-400;
+}
+
+.sidebar-title {
+  @apply text-lg font-bold text-white;
+}
+
+.sidebar-subtitle {
+  @apply text-sm text-purple-200;
+}
+
+/* User List Styles */
+.users-container {
+  @apply space-y-2 mb-6 max-h-[calc(100vh-16rem)] overflow-y-auto scrollbar-thin scrollbar-thumb-purple-400/50 scrollbar-track-transparent;
+}
+
+.user-item {
+  @apply group p-4 rounded-xl cursor-pointer transition-all duration-300 hover:scale-105;
+}
+
+.user-item-default {
+  @apply bg-white/5 hover:bg-white/10 border border-transparent hover:border-white/20;
+}
+
+.user-item-selected {
+  @apply bg-gradient-to-r from-purple-500/30 to-pink-500/30 border border-purple-400/50 shadow-lg;
+}
+
+.user-avatar {
+  @apply relative;
+}
+
+.user-avatar-circle {
+  @apply w-10 h-10 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center text-white font-bold text-sm;
+}
+
+.user-status-indicator {
+  @apply absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-400 rounded-full border-2 border-slate-900;
+}
+
+.user-info {
+  @apply flex-1 min-w-0;
+}
+
+.user-name {
+  @apply font-semibold truncate transition-colors;
+}
+
+.user-name-default {
+  @apply text-gray-200 group-hover:text-white;
+}
+
+.user-name-selected {
+  @apply text-white;
+}
+
+.user-status {
+  @apply text-xs text-purple-300;
+}
+
+/* Logout Button */
+.logout-button {
+  @apply w-full p-4 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-xl font-semibold hover:from-red-600 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2;
+}
+
+/* Main Chat Area */
+.chat-main {
+  @apply flex-1 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl flex flex-col overflow-hidden;
+}
+
+/* Chat Header */
+.chat-header {
+  @apply p-6 border-b border-white/20 bg-gradient-to-r from-purple-500/20 to-pink-500/20;
+}
+
+.chat-header-content {
+  @apply flex items-center justify-between;
+}
+
+.chat-header-left {
+  @apply flex items-center gap-4;
+}
+
+.chat-header-icon {
+  @apply p-3 bg-purple-500/20 rounded-xl;
+}
+
+.chat-logo {
+  @apply w-8 h-8 text-purple-400;
+}
+
+.chat-title {
+  @apply text-3xl font-bold text-white;
+}
+
+.chat-subtitle {
+  @apply text-purple-200;
+}
+
+.chat-header-right {
+  @apply text-right;
+}
+
+.chat-with-label {
+  @apply text-sm text-purple-200;
+}
+
+.chat-with-user {
+  @apply font-semibold text-white;
+}
+
+/* Tab Navigation */
+.tab-navigation {
+  @apply p-6 pb-0;
+}
+
+.tab-navigation-content {
+  @apply flex items-center justify-between;
+}
+
+.tab-container {
+  @apply flex bg-white/10 rounded-xl p-1;
+}
+
+.tab-button {
+  @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2;
+}
+
+.tab-button-active {
+  @apply bg-white text-slate-900 shadow-lg;
+}
+
+.tab-button-inactive {
+  @apply text-gray-300 hover:text-white hover:bg-white/10;
+}
+
+.tab-icon {
+  @apply w-4 h-4;
+}
+
+.clear-chat-button {
+  @apply px-4 py-2 bg-red-500/20 text-red-300 hover:text-red-200 hover:bg-red-500/30 rounded-lg transition-all duration-300 flex items-center gap-2 border border-red-500/30;
+}
+
+/* Messages Area */
+.messages-container {
+  @apply flex-1 p-6 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-400/50 scrollbar-track-transparent;
+}
+
+.messages-list {
+  @apply space-y-4;
+}
+
+.message-item {
+  @apply group animate-fade-in;
+}
+
+.message-content {
+  @apply flex items-start gap-3;
+}
+
+.message-avatar {
+  @apply w-8 h-8 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0;
+}
+
+.message-avatar-private {
+  @apply w-8 h-8 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0;
+}
+
+.message-body {
+  @apply flex-1 min-w-0;
+}
+
+.message-bubble {
+  @apply bg-white/10 backdrop-blur-sm rounded-2xl rounded-tl-sm p-4 border border-white/20 group-hover:border-white/30 transition-all duration-300;
+}
+
+.message-bubble-private {
+  @apply bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-2xl rounded-tl-sm p-4 border border-purple-400/30 group-hover:border-purple-400/50 transition-all duration-300;
+}
+
+.message-header {
+  @apply flex items-center gap-2 mb-1;
+}
+
+.message-sender {
+  @apply font-semibold text-white text-sm;
+}
+
+.message-recipient {
+  @apply text-xs text-purple-300;
+}
+
+.message-time {
+  @apply text-xs text-purple-300 ml-auto;
+}
+
+.message-text {
+  @apply text-gray-200 leading-relaxed;
+}
+
+/* Empty State */
+.empty-state {
+  @apply text-center py-12;
+}
+
+.empty-icon {
+  @apply w-16 h-16 text-purple-400 mx-auto mb-4 opacity-50;
+}
+
+.empty-title {
+  @apply text-gray-400 text-lg font-medium;
+}
+
+.empty-subtitle {
+  @apply text-purple-300 text-sm mt-1;
+}
+
+/* Message Input */
+.message-input-container {
+  @apply p-6 border-t border-white/20 bg-gradient-to-r from-purple-500/10 to-pink-500/10;
+}
+
+.message-input-form {
+  @apply flex gap-3;
+}
+
+.message-input-wrapper {
+  @apply flex-1 relative;
+}
+
+.message-input {
+  @apply w-full px-6 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent text-white placeholder-gray-400 transition-all duration-300;
+}
+
+.send-button {
+  @apply px-6 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl font-semibold hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center gap-2;
+}
+
+.send-button-loading {
+  @apply w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin;
+}
+
+.send-icon {
+  @apply w-5 h-5;
+}
+
+.send-text {
+  @apply hidden sm:inline;
+}
+
+/* Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}

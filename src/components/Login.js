@@ -1,46 +1,41 @@
+// client/src/components/Login.js
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-function Login() {
+function Login({ setIsAuthenticated, setToken }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log('Form submitted, starting login process'); // Debug form submission
+    console.log('Form submitted, starting login process');
+    setLoading(true);
+    setError('');
+
     try {
-      const apiUrl = `${process.env.REACT_APP_API_URL || 'https://chat-app-backend-mgik.onrender.com'}/login`;
+      const apiUrl = `${process.env.REACT_APP_API_URL || 'https://chat-app-backend-mgik.onrender.com'}/api/auth/login`;
       console.log('Login request URL:', apiUrl);
       console.log('Login attempt with credentials:', { username, password });
-
-      const response = await axios.post(apiUrl, {
-        username,
-        password,
-      });
-      console.log('Login response:', response); // Log the full response object
+      const response = await axios.post(apiUrl, { username, password }, { withCredentials: true });
+      console.log('Login response:', response.data);
       const { token } = response.data;
-      console.log('Extracted token:', token);
-
-      // Store the token in localStorage
-      localStorage.setItem('token', token);
-      console.log('Token stored in localStorage:', localStorage.getItem('token'));
-
-      // Try navigating to /chat
-      try {
-        navigate('/chat');
-        console.log('Navigated to /chat using navigate');
-      } catch (navError) {
-        console.error('Navigation error:', navError);
-        // Fallback to direct redirect if navigate fails
-        window.location.href = '/chat';
-        console.log('Navigated to /chat using window.location.href');
+      if (!token) {
+        throw new Error('No token received from server');
       }
+      localStorage.setItem('token', token);
+      console.log('Token stored in localStorage:', token);
+      setToken(token);
+      setIsAuthenticated(true);
+      navigate('/chat');
     } catch (err) {
       console.error('Login error:', err.response ? err.response.data : err.message);
-      setError('Invalid username or password');
+      setError(err.response?.data?.message || 'An error occurred during login');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -78,9 +73,10 @@ function Login() {
           </div>
           <button
             type="submit"
-            className="w-full bg-indigo-500 text-white p-2 rounded-lg hover:bg-indigo-600"
+            disabled={loading}
+            className={`w-full p-2 rounded-lg ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-indigo-500 hover:bg-indigo-600'} text-white`}
           >
-            Login
+            {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
         <p className="mt-4 text-center">

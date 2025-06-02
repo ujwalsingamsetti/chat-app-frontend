@@ -1,0 +1,110 @@
+/* Responsive Styles for Chat Component */
+
+/* Mobile First Approach */
+@media (max-width: 640px) {
+  .chat-wrapper {
+    @apply flex-col h-auto min-h-[calc(100vh-2rem)] gap-4;
+  }
+  
+  .sidebar {
+    @apply w-full order-2;
+  }
+  
+  .chat-main {
+    @apply order-1;
+  }
+  
+  .users-container {
+    @apply max-h-40;
+  }
+  
+  .chat-header-content {
+    @apply flex-col gap-4;
+  }
+  
+  .tab-navigation-content {
+    @apply flex-col gap-4;
+  }
+  
+  .tab-container {
+    @apply w-full;
+  }
+  
+  .message-input-form {
+    @apply flex-col gap-2;
+  }
+  
+  .send-text {
+    @apply inline;
+  }
+}
+
+/* Tablet Styles */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .sidebar {
+    @apply w-64;
+  }
+  
+  .chat-wrapper {
+    @apply gap-4;
+  }
+  
+  .users-container {
+    @apply max-h-[calc(100vh-20rem)];
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 1025px) {
+  .sidebar {
+    @apply w-80;
+  }
+  
+  .chat-wrapper {
+    @apply gap-6;
+  }
+  
+  .users-container {
+    @apply max-h-[calc(100vh-16rem)];
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1440px) {
+  .chat-wrapper {
+    @apply gap-8;
+  }
+  
+  .sidebar {
+    @apply w-96;
+  }
+}
+
+/* Height-specific responsive adjustments */
+@media (max-height: 700px) {
+  .users-container {
+    @apply max-h-32;
+  }
+  
+  .messages-container {
+    @apply max-h-60;
+  }
+}
+
+@media (max-height: 500px) {
+  .chat-container {
+    @apply p-2;
+  }
+  
+  .chat-wrapper {
+    @apply h-[calc(100vh-1rem)];
+  }
+  
+  .sidebar {
+    @apply p-4;
+  }
+  
+  .chat-main {
+    @apply min-h-0;
+  }
+}

@@ -1,0 +1,148 @@
+
+/* Theme Variations for Chat Component */
+
+/* Dark Theme (Default) */
+:root {
+  --chat-bg-primary: theme('colors.slate.900');
+  --chat-bg-secondary: theme('colors.purple.900');
+  --chat-bg-tertiary: theme('colors.slate.900');
+  --chat-text-primary: theme('colors.white');
+  --chat-text-secondary: theme('colors.purple.200');
+  --chat-accent-primary: theme('colors.purple.500');
+  --chat-accent-secondary: theme('colors.pink.500');
+  --chat-border: theme('colors.white' / 20%);
+  --chat-glass: theme('colors.white' / 10%);
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --chat-bg-primary: theme('colors.gray.100');
+  --chat-bg-secondary: theme('colors.blue.100');
+  --chat-bg-tertiary: theme('colors.gray.50');
+  --chat-text-primary: theme('colors.gray.900');
+  --chat-text-secondary: theme('colors.gray.600');
+  --chat-accent-primary: theme('colors.blue.500');
+  --chat-accent-secondary: theme('colors.indigo.500');
+  --chat-border: theme('colors.gray.300');
+  --chat-glass: theme('colors.white' / 80%);
+}
+
+/* Neon Theme */
+[data-theme="neon"] {
+  --chat-bg-primary: theme('colors.black');
+  --chat-bg-secondary: theme('colors.cyan.900');
+  --chat-bg-tertiary: theme('colors.black');
+  --chat-text-primary: theme('colors.cyan.300');
+  --chat-text-secondary: theme('colors.cyan.200');
+  --chat-accent-primary: theme('colors.cyan.500');
+  --chat-accent-secondary: theme('colors.pink.500');
+  --chat-border: theme('colors.cyan.500' / 30%);
+  --chat-glass: theme('colors.cyan.500' / 10%);
+}
+
+/* Ocean Theme */
+[data-theme="ocean"] {
+  --chat-bg-primary: theme('colors.blue.900');
+  --chat-bg-secondary: theme('colors.teal.800');
+  --chat-bg-tertiary: theme('colors.blue.950');
+  --chat-text-primary: theme('colors.blue.100');
+  --chat-text-secondary: theme('colors.teal.200');
+  --chat-accent-primary: theme('colors.teal.500');
+  --chat-accent-secondary: theme('colors.blue.500');
+  --chat-border: theme('colors.teal.400' / 20%);
+  --chat-glass: theme('colors.white' / 10%);
+}
+
+/* Forest Theme */
+[data-theme="forest"] {
+  --chat-bg-primary: theme('colors.green.900');
+  --chat-bg-secondary: theme('colors.emerald.800');
+  --chat-bg-tertiary: theme('colors.green.950');
+  --chat-text-primary: theme('colors.green.100');
+  --chat-text-secondary: theme('colors.emerald.200');
+  --chat-accent-primary: theme('colors.emerald.500');
+  --chat-accent-secondary: theme('colors.green.500');
+  --chat-border: theme('colors.emerald.400' / 20%);
+  --chat-glass: theme('colors.white' / 10%);
+}
+
+/* Theme Application Classes */
+.chat-themed {
+  background: linear-gradient(to bottom right, var(--chat-bg-primary), var(--chat-bg-secondary), var(--chat-bg-tertiary));
+  color: var(--chat-text-primary);
+}
+
+.chat-glass-themed {
+  background-color: var(--chat-glass);
+  border-color: var(--chat-border);
+}
+
+.chat-accent-themed {
+  background: linear-gradient(to right, var(--chat-accent-primary), var(--chat-accent-secondary));
+}
+
+.chat-text-primary-themed {
+  color: var(--chat-text-primary);
+}
+
+.chat-text-secondary-themed {
+  color: var(--chat-text-secondary);
+}
+
+.chat-border-themed {
+  border-color: var(--chat-border);
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --chat-border: theme('colors.white' / 50%);
+    --chat-glass: theme('colors.white' / 20%);
+  }
+  
+  .message-bubble {
+    border-width: 2px;
+  }
+  
+  .user-item {
+    border-width: 2px;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-slide-in-right,
+  .animate-slide-in-left,
+  .animate-bounce-in,
+  .hover-scale-105,
+  .hover-lift {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .chat-container {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .sidebar,
+  .message-input-container,
+  .logout-button,
+  .clear-chat-button {
+    display: none !important;
+  }
+  
+  .chat-main {
+    background: white !important;
+    border: 1px solid black !important;
+  }
+  
+  .message-bubble {
+    background: #f5f5f5 !important;
+    border: 1px solid #ddd !important;
+  }
+}
